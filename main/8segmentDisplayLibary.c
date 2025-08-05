@@ -1,7 +1,7 @@
-/*#include "freertos/FreeRTOS.h"
+#include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "8segDisplayLib.h" 
-*/
+ 
+
 #include "8segDisplayLib.h"
 
 /*
@@ -53,13 +53,17 @@ void setupPins(Digit* digStruct){
 }
 */
 void app_main(void){
-
+  
+  TickType_t delay = 500 / portTICK_PERIOD_MS;
 
   uint8_t digit[8] = {26, 25, 17, 16, 27, 14, 12, 13 };
   initSingleDigit(digit);
   while(1){
-    displayNum(digit   , 0); 
-    
+    for(uint8_t i = 0; i < 10; i++){
+      displayNum(digit, i);
+      vTaskDelay(delay);
+    }
+      
   }
 
 
