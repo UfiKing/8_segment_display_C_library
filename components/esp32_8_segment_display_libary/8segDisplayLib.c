@@ -16,6 +16,12 @@ void initSingleDigit(uint8_t segments[8]){
   
 } 
 
+void initPin(uint8_t pin){
+  gpio_reset_pin(pin);
+  gpio_set_direction(pin, GPIO_MODE_OUTPUT);
+  gpio_set_level(pin, 0);
+}
+
 void displayNum(uint8_t segments[8], uint8_t number){
 
   switch(number){
@@ -67,6 +73,11 @@ void displayNum(uint8_t segments[8], uint8_t number){
     case 9:
       for(uint8_t i = 0; i < 8; i++){
         gpio_set_level(segments[i], (0b01101111 >> i) & 1); 
+      }
+      break;
+    default:
+      for(uint8_t i = 0; i < 8; i++){
+        gpio_set_level(segments[i], (number >> i) & 1);
       }
       break;
   }
