@@ -66,7 +66,7 @@ void displayNum(uint8_t segments[8], uint8_t number){
       break;
     case 9:
       for(uint8_t i = 0; i < 8; i++){
-        gpio_set_level(segments[i], (0b01100111 >> i) & 1); 
+        gpio_set_level(segments[i], (0b01101111 >> i) & 1); 
       }
       break;
   }
