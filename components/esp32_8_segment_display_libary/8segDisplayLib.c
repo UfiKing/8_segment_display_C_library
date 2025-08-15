@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include "8segDisplayLib.h"
 
-uint32_t delay = 10;
+uint32_t delay =  9;
 
 void setDelay(uint32_t newDelay){
   delay = newDelay;
@@ -15,17 +15,26 @@ void setDelay(uint32_t newDelay){
 
 void initSingleDigit(uint8_t segments[8]){
   for(uint8_t i = 0; i < 8; i++){
-    gpio_reset_pin(segments[i]);
-    gpio_set_direction(segments[i], GPIO_MODE_OUTPUT);
-    gpio_set_level(segments[i], 0);
+    initPin(segments[i]);
 
   }
   
 } 
 
 void initPin(uint8_t pin){
+
+  gpio_config_t config = {
+    .pin_bit_mask = (1ULL << pin),
+    .mode = GPIO_MODE_OUTPUT,
+    .pull_up_en = GPIO_PULLUP_DISABLE,
+    .pull_down_en = GPIO_PULLDOWN_DISABLE,
+    .intr_type = GPIO_INTR_DISABLE
+  };
+  
   gpio_reset_pin(pin);
-  gpio_set_direction(pin, GPIO_MODE_OUTPUT);
+  
+  gpio_config(&config);
+  
   gpio_set_level(pin, 0);
 }
 
@@ -94,15 +103,15 @@ void displaySingleNum(uint8_t segments[8], uint8_t number){
 void initMultipleSegments(uint8_t segmentPins[8], uint8_t digitPins[], uint8_t numOfDigitPins){
   
   for(int i = 0; i < 8; i++){
-    gpio_reset_pin(segmentPins[i]);
-    gpio_set_direction(segmentPins[i], GPIO_MODE_OUTPUT);
-    gpio_set_level(segmentPins[i], 0);
+    
+    initPin(segmentPin[i]);
+
 
   }
 
   for(int i = 0; i < numOfDigitPins; i++){
-    gpio_reset_pin(digitPins[i]);
-    gpio_set_direction(digitPins[i], GPIO_MODE_OUTPUT);
+    initPin(digitPins[i]); 
+  
     gpio_set_level(digitPins[i], 1);
 
   }

@@ -19,15 +19,30 @@ void singleDigitExample1(uint8_t segments[8], uint32_t delay){
 }
 
 void app_main(void){
-  uint8_t segments[8] = {26, 25, 17, 16, 27, 14, 12, 13};
-  uint8_t digits[2] = {19, 18};
-  uint8_t nums[2] = {1, 2};
-  initMultipleSegments(segments, digits, 2);
+  uint8_t segments1[8] = {27, 14, 1, 25, 33, 12, 26, 3};
+  uint8_t segments2[8] = {4, 2, 19, 17, 5, 21, 16, 18};
+  uint8_t digit1[2] = {13, 23};
+  uint8_t digit2[2] = {22, 2};
+  uint8_t nums1[2] = {1, 2};
+  uint8_t nums2[2] = {3, 4};
+  initMultipleSegments(segments1, digit1, 2);
+  initMultipleSegments(segments2, digit2, 2);
 
-  displaySingleNum(segments, 0b1000000);
+  displaySingleNum(segments1, 0b1000000);
+  displaySingleNum(segments2, 0b1000000);
   //vTaskDelay(1000 / portTICK_PERIOD_MS);  
+  gpio_set_level(13, 0);
+  gpio_set_level(9, 0);
+  gpio_set_level(0, 0);
+  gpio_set_level(2, 0);
+
   while(1){
-    displayNums(segments, digits, nums , 2);
+    displaySingleNum(segments1, 0b11111111);
+    displaySingleNum(segments2, 0b11111111);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    //displayNums(segments1, digit1, nums1 , 2);
+    //displayNums(segments2, digit2, nums2, 2);
+  
   }
 
 }
