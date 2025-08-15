@@ -104,7 +104,7 @@ void initMultipleSegments(uint8_t segmentPins[8], uint8_t digitPins[], uint8_t n
   
   for(int i = 0; i < 8; i++){
     
-    initPin(segmentPin[i]);
+    initPin(segmentPins[i]);
 
 
   }
