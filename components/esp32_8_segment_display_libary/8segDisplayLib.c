@@ -5,6 +5,13 @@
 #include <stdint.h>
 #include "8segDisplayLib.h"
 
+uint32_t delay = 10;
+
+void setDelay(uint32_t newDelay){
+  delay = newDelay;
+}
+
+
 
 void initSingleDigit(uint8_t segments[8]){
   for(uint8_t i = 0; i < 8; i++){
@@ -111,6 +118,16 @@ void turnOffDigit(uint8_t pin){
 
 
 
+void displayNums(uint8_t segmentPins[8], uint8_t digitPins[], uint8_t nums[], uint8_t len){
+
+  for(int i = 0; i < len; i++){ 
+    turnOnDigit(digitPins[i]);
+    displaySingleNum(segmentPins, nums[i]);
+    vTaskDelay(delay / portTICK_PERIOD_MS);
+    turnOffDigit(digitPins[i]);
+  }
+
+}
 
 
 

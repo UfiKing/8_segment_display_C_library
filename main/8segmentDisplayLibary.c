@@ -11,7 +11,7 @@ void singleDigitExample1(uint8_t segments[8], uint32_t delay){
   initSingleDigit(segments);
   while(1){
     for(uint8_t i = 0; i < 10; i++){
-      displayNum(segments, i);
+      displaySingleNum(segments, i);
       vTaskDelay(delayProccesed);
     }
       
@@ -19,18 +19,15 @@ void singleDigitExample1(uint8_t segments[8], uint32_t delay){
 }
 
 void app_main(void){
-  uint8_t digit[8] = {26, 25, 17, 16, 27, 14, 12, 13};
-  
-  initPin(18);
-  gpio_set_level(18, 1);
-  initPin(19);
-  gpio_set_level(19, 0);
-  //singleDigitExample1(digit, 1000);
-  initSingleDigit(digit);
-  displaySingleNum(digit, 0b11111111);
-  vTaskDelay(1000 / portTICK_PERIOD_MS);  
+  uint8_t segments[8] = {26, 25, 17, 16, 27, 14, 12, 13};
+  uint8_t digits[2] = {19, 18};
+  uint8_t nums[2] = {1, 2};
+  initMultipleSegments(segments, digits, 2);
+
+  displaySingleNum(segments, 0b1000000);
+  //vTaskDelay(1000 / portTICK_PERIOD_MS);  
   while(1){
-    singleDigitExample1(digit, 1500);
+    displayNums(segments, digits, nums , 2);
   }
 
 }
