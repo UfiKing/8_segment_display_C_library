@@ -22,7 +22,7 @@ void initPin(uint8_t pin){
   gpio_set_level(pin, 0);
 }
 
-void displayNum(uint8_t segments[8], uint8_t number){
+void displaySingleNum(uint8_t segments[8], uint8_t number){
 
   switch(number){
     case 0:
@@ -82,6 +82,42 @@ void displayNum(uint8_t segments[8], uint8_t number){
       break;
   }
 }
+
+
+void initMultipleSegments(uint8_t segmentPins[8], uint8_t digitPins[], uint8_t numOfDigitPins){
+  
+  for(int i = 0; i < 8; i++){
+    gpio_reset_pin(segmentPins[i]);
+    gpio_set_direction(segmentPins[i], GPIO_MODE_OUTPUT);
+    gpio_set_level(segmentPins[i], 0);
+
+  }
+
+  for(int i = 0; i < numOfDigitPins; i++){
+    gpio_reset_pin(digitPins[i]);
+    gpio_set_direction(digitPins[i], GPIO_MODE_OUTPUT);
+    gpio_set_level(digitPins[i], 1);
+
+  }
+}
+
+void turnOnDigit(uint8_t pin){
+  gpio_set_level(pin, 0);
+}
+
+void turnOffDigit(uint8_t pin){
+  gpio_set_level(pin, 1);
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

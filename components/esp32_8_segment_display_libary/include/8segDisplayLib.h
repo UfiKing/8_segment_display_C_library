@@ -6,7 +6,12 @@ void initSingleDigit(uint8_t segments[8]);
 
 void initPin(uint8_t pin);  
 
-void displayNum(uint8_t segments[8], uint8_t number);
+void displaySingleNum(uint8_t segments[8], uint8_t number);
 
+void initMultipleSegments(uint8_t segmentPins[8], uint8_t digitPins[], uint8_t numOfDigitPins);
+
+void turnOnDigit(uint8_t pin);
+
+void turnOffDigit(uint8_t pin);
 #endif
 
