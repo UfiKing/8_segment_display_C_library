@@ -127,7 +127,7 @@ void turnOffDigit(uint8_t pin){
 
 
 
-void displayNums(uint8_t segmentPins[8], uint8_t digitPins[], uint8_t nums[], uint8_t len){
+void displayNumsAny(uint8_t segmentPins[8], uint8_t digitPins[], uint8_t nums[], uint8_t len){
 
   for(int i = 0; i < len; i++){ 
     turnOnDigit(digitPins[i]);
