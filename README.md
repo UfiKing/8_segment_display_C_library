@@ -8,16 +8,16 @@ the `main` directory will contain examples
 
 # functions
 
-- [initPin()](#initPin(uint8_t-pin))
+- [initPin()](#initPin())
 
-## initPin(uint8_t pin)
+### initPin(uint8_t pin)
 
 prepares a GPIO pin for output
 
 **Paramaters**: pin -- the GPIO pin number 
 **Returns**: void
 
-## initSingleDigit(uint8_t pins[8])
+### initSingleDigit(uint8_t pins[8])
 
 prepares 8 pins to be used for output 
 
@@ -25,7 +25,7 @@ prepares 8 pins to be used for output
 *NOTE* this also works if you provide an array with fewer than 8 elements
 **Returns** void
 
-## initMultipleSegments(uint8_t segmentPins[8], uint8_t digitPins[], uint8_t numOfDigitPins)
+### initMultipleSegments(uint8_t segmentPins[8], uint8_t digitPins[], uint8_t numOfDigitPins)
 
 prepares a display with multiple digits for usage
 
@@ -37,7 +37,7 @@ prepares a display with multiple digits for usage
 **Returns** void
 
 
-## displaySingleNum(uint8_t segments[8], uint8_t number)
+### displaySingleNum(uint8_t segments[8], uint8_t number)
 displays a number between 0 and 9 on the provided display 
 if the input dosent equal to a number 0 - 9, it maps the first bit to segment A, second to B ...
 0b01001011 would map to HGFEDCBA (H being DP or the little dot)
